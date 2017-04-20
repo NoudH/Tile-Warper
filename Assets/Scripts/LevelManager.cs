@@ -1,16 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour {
 
 	public GameObject Floor;
 	public GameObject Lava;
 	public GameObject Player;
-	[Space(8)]
+	[Space(6)]
 	[Header("Dimensions:")]
 	public int X;
 	public int Y;
+	[Space(6)]
+	[Header("UI")]
+	public Text Timer;
+	private float seconds;
+	private float minutes;
+	private int minu;
+	private string sec;
+	private string min;
+
 
 	// Use this for initialization
 	void Start () 
@@ -25,5 +35,29 @@ public class LevelManager : MonoBehaviour {
 				go.transform.parent = transform;
 			}
 		}
+	}
+
+	void Update()
+	{
+		seconds = Time.deltaTime + seconds;
+		minutes = ((Time.deltaTime + seconds) / 60) + minu;
+
+		if(seconds <= 10)
+		{
+			//sec = "0" + Mathf.Floor (seconds).ToString ();
+			Timer.text = Mathf.Floor (minutes).ToString () + ":0" + seconds.ToString ("F2");
+		}
+		else
+		{
+			//sec = Mathf.Floor (seconds).ToString ();
+			Timer.text = Mathf.Floor (minutes).ToString () + ":" + seconds.ToString ("F2");
+		}
+		if(seconds >= 60)
+		{
+			minu++;
+			seconds = 0;
+		}
+
+
 	}
 }

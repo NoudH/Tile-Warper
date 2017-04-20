@@ -10,7 +10,9 @@ public class lava : MonoBehaviour {
 		
 		if(other.collider.name == "Player")
 		{
-			Debug.Log ("You died");
+			Scene scene = SceneManager.GetActiveScene ();
+			SceneManager.LoadScene (scene.buildIndex);
+			//SceneManager.SetActiveScene (scene);
 		}
 	}
 

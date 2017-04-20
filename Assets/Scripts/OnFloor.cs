@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OnFloor : MonoBehaviour {
 
-	public GameObject Player;
+	private GameObject Player;
 
 	void Start()
 	{
